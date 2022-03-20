@@ -5,7 +5,7 @@
 
 shared_ptr<ChatRoom> GRoom = make_shared<ChatRoom>();
 
-void ChatRoom::Enter(std::shared_ptr<Player> player)
+void ChatRoom::Enter(std::shared_ptr<PlayerInfo> player)
 {
 	auto self(shared_from_this());
 	this->DoAsync([this, self, player]
@@ -14,7 +14,7 @@ void ChatRoom::Enter(std::shared_ptr<Player> player)
 		});
 }
 
-void ChatRoom::Leave(std::shared_ptr<Player> player)
+void ChatRoom::Leave(std::shared_ptr<PlayerInfo> player)
 {
 	auto self(shared_from_this());
 	this->DoAsync([this, self, player]

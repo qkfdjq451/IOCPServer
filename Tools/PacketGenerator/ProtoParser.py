@@ -17,7 +17,7 @@ class ProtoParser():
 			if line.startswith('message') == False:
 				continue
 
-			self.id = uuid.uuid4().int
+			self.id = uuid.uuid1().int>>64
 			pkt_name = line.split()[1].upper()
 			if pkt_name.startswith(self.recv_prefix):
 				self.recv_pkt.append(Packet(pkt_name, self.id))

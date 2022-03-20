@@ -6,10 +6,12 @@
 #include "Chat.pb.h"
 #include "ChatRoom.h"
 
-void ChatRoomManager::CreateChatRoom(std::shared_ptr<Player> requester, std::string roomName)
+class ChatRoomManager GChatRoomManager;
+
+void ChatRoomManager::CreateChatRoom(std::shared_ptr<PlayerInfo> requester, std::string roomName)
 {
 	auto self(shared_from_this());
-	this->DoAsync([this, self, requester, roomName]
+	this->DoAsync([this, self, requester, &roomName]
 		{
 			auto findIter = m_chatRoomMap.find(roomName);
 			if (findIter != m_chatRoomMap.end())
@@ -27,16 +29,31 @@ void ChatRoomManager::CreateChatRoom(std::shared_ptr<Player> requester, std::str
 		});
 }
 
-void ChatRoomManager::JoinRoom(std::shared_ptr<Player> requester, std::string roomName)
+void ChatRoomManager::JoinRoom(std::shared_ptr<PlayerInfo> requester, std::string roomName)
 {
 	auto self(shared_from_this());
-	this->DoAsync([this, self, requester, roomName]
+	this->DoAsync([this, self, requester, &roomName]
 		{
 			this->joinRoomInternal(requester, roomName);
 		});
 }
 
-void ChatRoomManager::createChatRoomInternal(std::shared_ptr<Player> requester, std::string roomName)
+void ChatRoomManager::GetRoomList(function<void(const std::vector<std::string>&)> func)
+{
+	auto self(shared_from_this());
+	this->DoAsync([this, self, func]
+		{
+			std::vector<std::string> roomList;
+			for (auto keyValue : m_chatRoomMap)
+			{
+				roomList.push_back(keyValue.first);
+			}
+			func(roomList);
+		});
+}
+
+
+void ChatRoomManager::createChatRoomInternal(std::shared_ptr<PlayerInfo> requester, const std::string& roomName)
 {
 	auto findIter = m_chatRoomMap.find(roomName);
 	if (findIter != m_chatRoomMap.end())
@@ -50,7 +67,7 @@ void ChatRoomManager::createChatRoomInternal(std::shared_ptr<Player> requester, 
 	joinRoomInternal(requester, roomName);
 }
 
-void ChatRoomManager::joinRoomInternal(std::shared_ptr<Player> requester, std::string roomName)
+void ChatRoomManager::joinRoomInternal(std::shared_ptr<PlayerInfo> requester, const std::string& roomName)
 {
 	auto findIter = m_chatRoomMap.find(roomName);
 	if (findIter == m_chatRoomMap.end())

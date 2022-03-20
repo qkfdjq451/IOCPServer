@@ -5,12 +5,11 @@
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "BufferWriter.h"
-#include "ClientPacketHandler.h"
 #include <tchar.h>
-#include "Protocol.pb.h"
 #include "Job.h"
-#include "Room.h"
 #include "Player.h"
+#include "ClientLoginPacketHandler.h"
+#include "ClientChatPacketHandler.h"
 
 enum
 {
@@ -19,22 +18,18 @@ enum
 
 int main()
 {
-	GRoom->DoTimer(1000, [] { cout << "Hello 1000" << endl; });
-	GRoom->DoTimer(2000, [] { cout << "Hello 2000" << endl; });
-	GRoom->DoTimer(3000, [] { cout << "Hello 3000" << endl; });
-
 	const int WorkerThreadCount = 4;
 	const int NetworkThreadCount = 4;
 	
-	GRoom->DoAsync
-
-	ClientPacketHandler::Init();
+	ClientLoginPacketHandler::Init();
+	ClientChatPacketHandler::Init();
 
 	ServerServiceRef service = MakeShared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
 		MakeShared<IocpCore>(),
 		MakeShared<GameSession>, // TODO : SessionManager 등
 		100);
+
 
 	ASSERT_CRASH(service->Start());
 

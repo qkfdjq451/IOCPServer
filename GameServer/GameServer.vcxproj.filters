@@ -33,9 +33,6 @@
     <ClCompile Include="GameSessionManager.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="ClientPacketHandler.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -45,7 +42,6 @@
     <ClCompile Include="ChatRoomManager.cpp">
       <Filter>ChatRoom</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Login.pb.cc">
       <Filter>Protocol</Filter>
     </ClCompile>
@@ -61,6 +57,9 @@
     <ClCompile Include="ClientLoginPacketHandler.cpp">
       <Filter>Login</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -72,9 +71,6 @@
     <ClInclude Include="GameSession.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="ClientPacketHandler.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -84,7 +80,6 @@
     <ClInclude Include="ChatRoomManager.h">
       <Filter>ChatRoom</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Login.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
@@ -99,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="ClientLoginPacketHandler.h">
       <Filter>Login</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

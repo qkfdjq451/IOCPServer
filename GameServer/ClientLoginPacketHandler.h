@@ -2,16 +2,13 @@
 #include "Login.pb.h"
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern std::map<int64, PacketHandlerFunc> GClientLoginPacketHandlerMap;
+extern std::map<uint64, PacketHandlerFunc> GClientLoginPacketHandlerMap;
 
-enum : int64
+enum : uint64
 {
-	PKT_C_LOGIN = 77426213932142354404065231073300007059i64,
-	PKT_S_LOGIN = 51159662209080589159789832399309181806i64,
+	PKT_C_LOGIN = 18317769610250883564i64,
+	PKT_S_LOGIN_RESULT = 18317769614545850860i64,
 };
-
-// Custom Handlers
-bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 bool Handle_C_LOGIN(PacketSessionRef& session, Protocol::C_LOGIN& pkt);
 
 class ClientLoginPacketHandler
@@ -32,10 +29,10 @@ public:
 		}
 		else
 		{
-			return Handle_INVALID(session, buffer, len);
+			return false;
 		}
 	}
-	static SendBufferRef MakeSendBuffer(Protocol::S_LOGIN& pkt) { return MakeSendBuffer(pkt, PKT_S_LOGIN); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_LOGIN_RESULT& pkt) { return MakeSendBuffer(pkt, PKT_S_LOGIN_RESULT); }
 
 private:
 	template<typename PacketType, typename ProcessFunc>

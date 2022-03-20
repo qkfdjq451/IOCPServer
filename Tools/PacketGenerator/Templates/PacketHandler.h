@@ -2,17 +2,14 @@
 #include "{{parser.file_name}}.pb.h"
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern std::map<int64, PacketHandlerFunc> G{{output}}Map;
+extern std::map<uint64, PacketHandlerFunc> G{{output}}Map;
 
-enum : int64
+enum : uint64
 {
 {%- for pkt in parser.total_pkt %}
 	PKT_{{pkt.name}} = {{pkt.id}}i64,
 {%- endfor %}
 };
-
-// Custom Handlers
-bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 {%- for pkt in parser.recv_pkt %}
 bool Handle_{{pkt.name}}(PacketSessionRef& session, Protocol::{{pkt.name}}& pkt);
@@ -38,7 +35,7 @@ public:
 		}
 		else
 		{
-			return Handle_INVALID(session, buffer, len);
+			return false;
 		}
 	}
 

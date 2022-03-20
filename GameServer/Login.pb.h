@@ -58,13 +58,13 @@ namespace Protocol {
 class C_LOGIN;
 struct C_LOGINDefaultTypeInternal;
 extern C_LOGINDefaultTypeInternal _C_LOGIN_default_instance_;
-class S_LOGIN;
-struct S_LOGINDefaultTypeInternal;
-extern S_LOGINDefaultTypeInternal _S_LOGIN_default_instance_;
+class S_LOGIN_RESULT;
+struct S_LOGIN_RESULTDefaultTypeInternal;
+extern S_LOGIN_RESULTDefaultTypeInternal _S_LOGIN_RESULT_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Protocol::C_LOGIN* Arena::CreateMaybeMessage<::Protocol::C_LOGIN>(Arena*);
-template<> ::Protocol::S_LOGIN* Arena::CreateMaybeMessage<::Protocol::S_LOGIN>(Arena*);
+template<> ::Protocol::S_LOGIN_RESULT* Arena::CreateMaybeMessage<::Protocol::S_LOGIN_RESULT>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
 
@@ -221,24 +221,24 @@ class C_LOGIN final :
 };
 // -------------------------------------------------------------------
 
-class S_LOGIN final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_LOGIN) */ {
+class S_LOGIN_RESULT final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_LOGIN_RESULT) */ {
  public:
-  inline S_LOGIN() : S_LOGIN(nullptr) {}
-  ~S_LOGIN() override;
-  explicit constexpr S_LOGIN(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline S_LOGIN_RESULT() : S_LOGIN_RESULT(nullptr) {}
+  ~S_LOGIN_RESULT() override;
+  explicit constexpr S_LOGIN_RESULT(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S_LOGIN(const S_LOGIN& from);
-  S_LOGIN(S_LOGIN&& from) noexcept
-    : S_LOGIN() {
+  S_LOGIN_RESULT(const S_LOGIN_RESULT& from);
+  S_LOGIN_RESULT(S_LOGIN_RESULT&& from) noexcept
+    : S_LOGIN_RESULT() {
     *this = ::std::move(from);
   }
 
-  inline S_LOGIN& operator=(const S_LOGIN& from) {
+  inline S_LOGIN_RESULT& operator=(const S_LOGIN_RESULT& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S_LOGIN& operator=(S_LOGIN&& from) noexcept {
+  inline S_LOGIN_RESULT& operator=(S_LOGIN_RESULT&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -261,20 +261,20 @@ class S_LOGIN final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S_LOGIN& default_instance() {
+  static const S_LOGIN_RESULT& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S_LOGIN* internal_default_instance() {
-    return reinterpret_cast<const S_LOGIN*>(
-               &_S_LOGIN_default_instance_);
+  static inline const S_LOGIN_RESULT* internal_default_instance() {
+    return reinterpret_cast<const S_LOGIN_RESULT*>(
+               &_S_LOGIN_RESULT_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(S_LOGIN& a, S_LOGIN& b) {
+  friend void swap(S_LOGIN_RESULT& a, S_LOGIN_RESULT& b) {
     a.Swap(&b);
   }
-  inline void Swap(S_LOGIN* other) {
+  inline void Swap(S_LOGIN_RESULT* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -287,7 +287,7 @@ class S_LOGIN final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S_LOGIN* other) {
+  void UnsafeArenaSwap(S_LOGIN_RESULT* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -295,13 +295,13 @@ class S_LOGIN final :
 
   // implements Message ----------------------------------------------
 
-  S_LOGIN* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S_LOGIN>(arena);
+  S_LOGIN_RESULT* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<S_LOGIN_RESULT>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S_LOGIN& from);
+  void CopyFrom(const S_LOGIN_RESULT& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const S_LOGIN& from);
+  void MergeFrom(const S_LOGIN_RESULT& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -318,15 +318,15 @@ class S_LOGIN final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S_LOGIN* other);
+  void InternalSwap(S_LOGIN_RESULT* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_LOGIN";
+    return "Protocol.S_LOGIN_RESULT";
   }
   protected:
-  explicit S_LOGIN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit S_LOGIN_RESULT(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -346,23 +346,23 @@ class S_LOGIN final :
     kPlayersFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // repeated .Protocol.Player players = 2;
-  int players_size() const;
+  // .Protocol.Player players = 2;
+  bool has_players() const;
   private:
-  int _internal_players_size() const;
+  bool _internal_has_players() const;
   public:
   void clear_players();
-  ::Protocol::Player* mutable_players(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::Player >*
-      mutable_players();
+  const ::Protocol::Player& players() const;
+  PROTOBUF_NODISCARD ::Protocol::Player* release_players();
+  ::Protocol::Player* mutable_players();
+  void set_allocated_players(::Protocol::Player* players);
   private:
-  const ::Protocol::Player& _internal_players(int index) const;
-  ::Protocol::Player* _internal_add_players();
+  const ::Protocol::Player& _internal_players() const;
+  ::Protocol::Player* _internal_mutable_players();
   public:
-  const ::Protocol::Player& players(int index) const;
-  ::Protocol::Player* add_players();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::Player >&
-      players() const;
+  void unsafe_arena_set_allocated_players(
+      ::Protocol::Player* players);
+  ::Protocol::Player* unsafe_arena_release_players();
 
   // bool success = 1;
   void clear_success();
@@ -373,14 +373,14 @@ class S_LOGIN final :
   void _internal_set_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.S_LOGIN)
+  // @@protoc_insertion_point(class_scope:Protocol.S_LOGIN_RESULT)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::Player > players_;
+  ::Protocol::Player* players_;
   bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Login_2eproto;
@@ -449,63 +449,112 @@ inline void C_LOGIN::set_allocated_name(std::string* name) {
 
 // -------------------------------------------------------------------
 
-// S_LOGIN
+// S_LOGIN_RESULT
 
 // bool success = 1;
-inline void S_LOGIN::clear_success() {
+inline void S_LOGIN_RESULT::clear_success() {
   success_ = false;
 }
-inline bool S_LOGIN::_internal_success() const {
+inline bool S_LOGIN_RESULT::_internal_success() const {
   return success_;
 }
-inline bool S_LOGIN::success() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.success)
+inline bool S_LOGIN_RESULT::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN_RESULT.success)
   return _internal_success();
 }
-inline void S_LOGIN::_internal_set_success(bool value) {
+inline void S_LOGIN_RESULT::_internal_set_success(bool value) {
   
   success_ = value;
 }
-inline void S_LOGIN::set_success(bool value) {
+inline void S_LOGIN_RESULT::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.success)
+  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN_RESULT.success)
 }
 
-// repeated .Protocol.Player players = 2;
-inline int S_LOGIN::_internal_players_size() const {
-  return players_.size();
+// .Protocol.Player players = 2;
+inline bool S_LOGIN_RESULT::_internal_has_players() const {
+  return this != internal_default_instance() && players_ != nullptr;
 }
-inline int S_LOGIN::players_size() const {
-  return _internal_players_size();
+inline bool S_LOGIN_RESULT::has_players() const {
+  return _internal_has_players();
 }
-inline ::Protocol::Player* S_LOGIN::mutable_players(int index) {
-  // @@protoc_insertion_point(field_mutable:Protocol.S_LOGIN.players)
-  return players_.Mutable(index);
+inline const ::Protocol::Player& S_LOGIN_RESULT::_internal_players() const {
+  const ::Protocol::Player* p = players_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::Player&>(
+      ::Protocol::_Player_default_instance_);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::Player >*
-S_LOGIN::mutable_players() {
-  // @@protoc_insertion_point(field_mutable_list:Protocol.S_LOGIN.players)
-  return &players_;
+inline const ::Protocol::Player& S_LOGIN_RESULT::players() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN_RESULT.players)
+  return _internal_players();
 }
-inline const ::Protocol::Player& S_LOGIN::_internal_players(int index) const {
-  return players_.Get(index);
+inline void S_LOGIN_RESULT::unsafe_arena_set_allocated_players(
+    ::Protocol::Player* players) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(players_);
+  }
+  players_ = players;
+  if (players) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.S_LOGIN_RESULT.players)
 }
-inline const ::Protocol::Player& S_LOGIN::players(int index) const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.players)
-  return _internal_players(index);
+inline ::Protocol::Player* S_LOGIN_RESULT::release_players() {
+  
+  ::Protocol::Player* temp = players_;
+  players_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline ::Protocol::Player* S_LOGIN::_internal_add_players() {
-  return players_.Add();
+inline ::Protocol::Player* S_LOGIN_RESULT::unsafe_arena_release_players() {
+  // @@protoc_insertion_point(field_release:Protocol.S_LOGIN_RESULT.players)
+  
+  ::Protocol::Player* temp = players_;
+  players_ = nullptr;
+  return temp;
 }
-inline ::Protocol::Player* S_LOGIN::add_players() {
-  ::Protocol::Player* _add = _internal_add_players();
-  // @@protoc_insertion_point(field_add:Protocol.S_LOGIN.players)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::Player >&
-S_LOGIN::players() const {
-  // @@protoc_insertion_point(field_list:Protocol.S_LOGIN.players)
+inline ::Protocol::Player* S_LOGIN_RESULT::_internal_mutable_players() {
+  
+  if (players_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Protocol::Player>(GetArenaForAllocation());
+    players_ = p;
+  }
   return players_;
+}
+inline ::Protocol::Player* S_LOGIN_RESULT::mutable_players() {
+  ::Protocol::Player* _msg = _internal_mutable_players();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_LOGIN_RESULT.players)
+  return _msg;
+}
+inline void S_LOGIN_RESULT::set_allocated_players(::Protocol::Player* players) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(players_);
+  }
+  if (players) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(players));
+    if (message_arena != submessage_arena) {
+      players = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, players, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  players_ = players;
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN_RESULT.players)
 }
 
 #ifdef __GNUC__

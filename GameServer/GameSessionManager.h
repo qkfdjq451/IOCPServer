@@ -2,17 +2,14 @@
 
 class GameSession;
 
-using GameSessionRef = shared_ptr<GameSession>;
-
-class GameSessionManager
+class GameSessionManager : JobQueue
 {
 public:
 	void Add(GameSessionRef session);
 	void Remove(GameSessionRef session);
 	void Broadcast(SendBufferRef sendBuffer);
 
-private:
-	USE_LOCK;
+private:	
 	Set<GameSessionRef> _sessions;
 };
 

@@ -3,7 +3,8 @@
 #include "Service.h"
 #include "Session.h"
 #include "BufferReader.h"
-#include "ServerPacketHandler.h"
+#include "ServerChatPacketHandler.h"
+#include "ServerLoginPacketHandler.h"
 
 char sendData[] = "Hello World";
 
@@ -18,7 +19,7 @@ public:
 	virtual void OnConnected() override
 	{
 		Protocol::C_LOGIN pkt;
-		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
+		auto sendBuffer = ServerLoginPacketHandler::MakeSendBuffer(pkt);
 		Send(sendBuffer);
 	}
 
@@ -44,7 +45,8 @@ public:
 
 int main()
 {
-	ServerPacketHandler::Init();
+	ServerChatPacketHandler::Init();
+	ServerLoginPacketHandler::Init();
 
 	this_thread::sleep_for(1s);
 
@@ -65,6 +67,13 @@ int main()
 					service->GetIocpCore()->Dispatch();
 				}
 			});
+	}
+
+	while (true)
+	{
+		std::string command;
+		cin >> command;
+
 	}
 
 	//Protocol::C_CHAT chatPkt;

@@ -19,6 +19,9 @@
     <Filter Include="MessageHandler\Login">
       <UniqueIdentifier>{30cd7e33-d69e-443f-aa27-9d9c6e46554c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CommandManager">
+      <UniqueIdentifier>{d45d983f-e2d6-447e-b4b6-c5185cf5aaff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DummyClient.cpp">
@@ -42,6 +45,12 @@
     <ClCompile Include="Player.pb.cc">
       <Filter>Protocol</Filter>
     </ClCompile>
+    <ClCompile Include="ServerLoginPacketHandler.cpp">
+      <Filter>MessageHandler\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandManager.cpp">
+      <Filter>CommandManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -64,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="Player.pb.h">
       <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandManager.h">
+      <Filter>CommandManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

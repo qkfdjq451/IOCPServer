@@ -172,6 +172,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chat.pb.cc" />
+    <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="Login.pb.cc" />
     <ClCompile Include="Player.pb.cc" />
     <ClCompile Include="ServerChatPacketHandler.cpp" />
@@ -183,9 +184,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ServerLoginPacketHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chat.pb.h" />
+    <ClInclude Include="CommandManager.h" />
     <ClInclude Include="Login.pb.h" />
     <ClInclude Include="Player.pb.h" />
     <ClInclude Include="ServerChatPacketHandler.h" />

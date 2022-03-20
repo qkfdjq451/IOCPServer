@@ -4,19 +4,16 @@
 class GameSession : public PacketSession
 {
 public:
-	~GameSession()
-	{
-		cout << "~GameSession" << endl;
-	}
-
 	virtual void OnConnected() override;
 	virtual void OnDisconnected() override;
 	virtual void OnRecvPacket(BYTE* buffer, int32 len) override;
 	virtual void OnSend(int32 len) override;
 
-public:
-	Vector<PlayerRef> _players;
-
-	PlayerRef _currentPlayer;
-	weak_ptr<class ChatRoom> _room;
+	void SetPlayer(std::shared_ptr<class PlayerInfo> player) { m_player = player; }
+	std::shared_ptr<class PlayerInfo> GetPlayer() { return m_player.lock(); }
+	
+	void DoAsync(function<void()>&& func);
+private:
+	JobQueue jobQueue;
+	std::weak_ptr<class PlayerInfo> m_player;	
 };
