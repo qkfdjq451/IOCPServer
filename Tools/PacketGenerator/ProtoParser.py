@@ -1,11 +1,11 @@
+import uuid
 
 class ProtoParser():
-	def __init__(self, start_id, recv_prefix, send_prefix):
+	def __init__(self, file_name, recv_prefix, send_prefix):
 		self.recv_pkt = []	# 수신 패킷 목록
 		self.send_pkt = [] # 송신 패킷 목록
-		self.total_pkt = [] # 모든 패킷 목록
-		self.start_id = start_id
-		self.id = start_id
+		self.total_pkt = [] # 모든 패킷 목록		
+		self.file_name = file_name
 		self.recv_prefix = recv_prefix
 		self.send_prefix = send_prefix
 
@@ -17,6 +17,7 @@ class ProtoParser():
 			if line.startswith('message') == False:
 				continue
 
+			self.id = uuid.uuid4().int
 			pkt_name = line.split()[1].upper()
 			if pkt_name.startswith(self.recv_prefix):
 				self.recv_pkt.append(Packet(pkt_name, self.id))
@@ -26,7 +27,7 @@ class ProtoParser():
 				continue
 
 			self.total_pkt.append(Packet(pkt_name, self.id))
-			self.id += 1
+			#self.id += 1
 
 		f.close()
 

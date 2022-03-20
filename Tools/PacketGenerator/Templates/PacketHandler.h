@@ -1,13 +1,13 @@
 #pragma once
-#include "Protocol.pb.h"
+#include "{{parser.file_name}}.pb.h"
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+extern std::map<int64, PacketHandlerFunc> G{{output}}Map;
 
-enum : uint16
+enum : int64
 {
 {%- for pkt in parser.total_pkt %}
-	PKT_{{pkt.name}} = {{pkt.id}},
+	PKT_{{pkt.name}} = {{pkt.id}}i64,
 {%- endfor %}
 };
 
@@ -23,18 +23,23 @@ class {{output}}
 public:
 	static void Init()
 	{
-		for (int32 i = 0; i < UINT16_MAX; i++)
-			GPacketHandler[i] = Handle_INVALID;
-
 {%- for pkt in parser.recv_pkt %}
-		GPacketHandler[PKT_{{pkt.name}}] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::{{pkt.name}}>(Handle_{{pkt.name}}, session, buffer, len); };
+		G{{output}}Map.emplace(PKT_{{pkt.name}},[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::{{pkt.name}}>(Handle_{{pkt.name}}, session, buffer, len); });		
 {%- endfor %}
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
 	{
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-		return GPacketHandler[header->id](session, buffer, len);
+		auto handler = G{{output}}Map.find(header->id);
+		if (handler != G{{output}}Map.end())
+		{
+			return handler->second(session, buffer, len);
+		}
+		else
+		{
+			return Handle_INVALID(session, buffer, len);
+		}
 	}
 
 {%- for pkt in parser.send_pkt %}

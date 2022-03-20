@@ -67,15 +67,15 @@ int main()
 			});
 	}
 
-	Protocol::C_CHAT chatPkt;
-	chatPkt.set_msg(u8"Hello World !");
-	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(chatPkt);
+	//Protocol::C_CHAT chatPkt;
+	//chatPkt.set_msg(u8"Hello World !");
+	//auto sendBuffer = ServerPacketHandler::MakeSendBuffer(chatPkt);
 
-	while (true)
-	{
-		service->Broadcast(sendBuffer);
-		this_thread::sleep_for(1s);
-	}
+	//while (true)
+	//{
+	//	service->Broadcast(sendBuffer);
+	//	this_thread::sleep_for(1s);
+	//}
 
 	GThreadManager->Join();
 }

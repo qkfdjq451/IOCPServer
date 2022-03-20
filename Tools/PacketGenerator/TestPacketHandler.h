@@ -1,40 +1,47 @@
 #pragma once
+#include "pch.h"
 #include "Protocol.pb.h"
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
+extern std::map<int64, PacketHandlerFunc> GTestPacketHandlerMap;
 
-enum : uint16
+enum : int64
 {
-	PKT_C_TEST = 1000,
-	PKT_C_MOVE = 1001,
-	PKT_S_TEST = 1002,
-	PKT_S_LOGIN = 1003,
+	PKT_C_LOGIN = 41050439389459772852578745051401041407i64,
+	PKT_S_LOGIN = 295298191116533572051782016561287153848i64,
+	PKT_C_ENTER_GAME = 22462931294825420132875768155955676669i64,
+	PKT_S_ENTER_GAME = 114426464830666587493165940719442609130i64,
 };
 
 // Custom Handlers
 bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
-bool Handle_C_TEST(PacketSessionRef& session, Protocol::C_TEST& pkt);
-bool Handle_C_MOVE(PacketSessionRef& session, Protocol::C_MOVE& pkt);
+bool Handle_C_LOGIN(PacketSessionRef& session, Protocol::C_LOGIN& pkt);
+bool Handle_C_ENTER_GAME(PacketSessionRef& session, Protocol::C_ENTER_GAME& pkt);
 
 class TestPacketHandler
 {
 public:
 	static void Init()
 	{
-		for (int32 i = 0; i < UINT16_MAX; i++)
-			GPacketHandler[i] = Handle_INVALID;
-		GPacketHandler[PKT_C_TEST] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C_TEST>(Handle_C_TEST, session, buffer, len); };
-		GPacketHandler[PKT_C_MOVE] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C_MOVE>(Handle_C_MOVE, session, buffer, len); };
+		GTestPacketHandlerMap.emplace(PKT_C_LOGIN,[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C_LOGIN>(Handle_C_LOGIN, session, buffer, len); });
+		GTestPacketHandlerMap.emplace(PKT_C_ENTER_GAME,[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C_ENTER_GAME>(Handle_C_ENTER_GAME, session, buffer, len); });
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
 	{
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-		return GPacketHandler[header->id](session, buffer, len);
+		auto handler = GTestPacketHandlerMap.find(header->id);
+		if (handler != GTestPacketHandlerMap.end())
+		{
+			return handler->second(session, buffer, len);
+		}
+		else
+		{
+			return Handle_INVALID(session, buffer, len);
+		}
 	}
-	static SendBufferRef MakeSendBuffer(Protocol::S_TEST& pkt) { return MakeSendBuffer(pkt, PKT_S_TEST); }
 	static SendBufferRef MakeSendBuffer(Protocol::S_LOGIN& pkt) { return MakeSendBuffer(pkt, PKT_S_LOGIN); }
+	static SendBufferRef MakeSendBuffer(Protocol::S_ENTER_GAME& pkt) { return MakeSendBuffer(pkt, PKT_S_ENTER_GAME); }
 
 private:
 	template<typename PacketType, typename ProcessFunc>

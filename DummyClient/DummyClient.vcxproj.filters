@@ -10,6 +10,15 @@
     <Filter Include="Protocol">
       <UniqueIdentifier>{15ffd3da-e358-4e2b-8754-e2e4a6f52136}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MessageHandler">
+      <UniqueIdentifier>{f5110d5f-0ac1-4b0d-8e18-5d8449fdb961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MessageHandler\Chat">
+      <UniqueIdentifier>{0817889f-3e70-4b87-a721-3ad3d7ede12c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MessageHandler\Login">
+      <UniqueIdentifier>{30cd7e33-d69e-443f-aa27-9d9c6e46554c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DummyClient.cpp">
@@ -21,13 +30,16 @@
     <ClCompile Include="ServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Protocol.pb.cc">
+    <ClCompile Include="ServerChatPacketHandler.cpp">
+      <Filter>MessageHandler\Chat</Filter>
+    </ClCompile>
+    <ClCompile Include="Chat.pb.cc">
       <Filter>Protocol</Filter>
     </ClCompile>
-    <ClCompile Include="Struct.pb.cc">
+    <ClCompile Include="Login.pb.cc">
       <Filter>Protocol</Filter>
     </ClCompile>
-    <ClCompile Include="Enum.pb.cc">
+    <ClCompile Include="Player.pb.cc">
       <Filter>Protocol</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,27 +50,27 @@
     <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Protocol.pb.h">
+    <ClInclude Include="ServerChatPacketHandler.h">
+      <Filter>MessageHandler\Chat</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerLoginPacketHandler.h">
+      <Filter>MessageHandler\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="Chat.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="Enum.pb.h">
+    <ClInclude Include="Login.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="Struct.pb.h">
+    <ClInclude Include="Player.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Common\Protobuf\bin\Struct.proto">
-      <Filter>Protocol</Filter>
-    </None>
-    <None Include="..\Common\Protobuf\bin\Enum.proto">
-      <Filter>Protocol</Filter>
-    </None>
-    <None Include="..\Common\Protobuf\bin\Protocol.proto">
-      <Filter>Protocol</Filter>
-    </None>
     <None Include="..\Common\Protobuf\bin\GenPackets.bat">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="..\Common\Protobuf\bin\Chat.proto">
       <Filter>Protocol</Filter>
     </None>
   </ItemGroup>

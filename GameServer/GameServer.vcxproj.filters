@@ -10,7 +10,13 @@
     <Filter Include="Protocol">
       <UniqueIdentifier>{603496b5-138a-4725-951a-b0a8ee8dfe85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameContents">
+    <Filter Include="Login">
+      <UniqueIdentifier>{c9ac7cc0-02a2-4cbe-9050-cd48900251fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ChatRoom">
+      <UniqueIdentifier>{a5dfc2d6-7903-4802-8b11-42cff4f6fa13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
       <UniqueIdentifier>{87ecb0c8-a463-4f2f-8da3-49a7bcdfb77a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -30,20 +36,30 @@
     <ClCompile Include="ClientPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Protocol.pb.cc">
-      <Filter>Protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="Struct.pb.cc">
-      <Filter>Protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="Enum.pb.cc">
-      <Filter>Protocol</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>GameContents</Filter>
+      <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>GameContents</Filter>
+    <ClCompile Include="ChatRoom.cpp">
+      <Filter>ChatRoom</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatRoomManager.cpp">
+      <Filter>ChatRoom</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="Login.pb.cc">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.pb.cc">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Chat.pb.cc">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientChatPacketHandler.cpp">
+      <Filter>ChatRoom</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientLoginPacketHandler.cpp">
+      <Filter>Login</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,33 +75,43 @@
     <ClInclude Include="ClientPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Protocol.pb.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="Struct.pb.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="Enum.pb.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>GameContents</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>GameContents</Filter>
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatRoom.h">
+      <Filter>ChatRoom</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatRoomManager.h">
+      <Filter>ChatRoom</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="Login.pb.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.pb.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Chat.pb.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientChatPacketHandler.h">
+      <Filter>ChatRoom</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientLoginPacketHandler.h">
+      <Filter>Login</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Common\Protobuf\bin\Enum.proto">
-      <Filter>Protocol</Filter>
-    </None>
-    <None Include="..\Common\Protobuf\bin\Protocol.proto">
-      <Filter>Protocol</Filter>
-    </None>
-    <None Include="..\Common\Protobuf\bin\Struct.proto">
+    <None Include="..\Common\Protobuf\bin\Player.proto">
       <Filter>Protocol</Filter>
     </None>
     <None Include="..\Common\Protobuf\bin\GenPackets.bat">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="..\Common\Protobuf\bin\Chat.proto">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="..\Common\Protobuf\bin\Login.proto">
       <Filter>Protocol</Filter>
     </None>
   </ItemGroup>

@@ -18,5 +18,5 @@ public:
 	Vector<PlayerRef> _players;
 
 	PlayerRef _currentPlayer;
-	weak_ptr<class Room> _room;
+	weak_ptr<class ChatRoom> _room;
 };

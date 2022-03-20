@@ -17,28 +17,16 @@ enum
 	WORKER_TICK = 64
 };
 
-void DoWorkerJob(ServerServiceRef& service)
-{
-	while (true)
-	{
-		LEndTickCount = ::GetTickCount64() + WORKER_TICK;
-
-		// 네트워크 입출력 처리 -> 인게임 로직까지 (패킷 핸들러에 의해)
-		service->GetIocpCore()->Dispatch(10);
-
-		// 예약된 일감 처리
-		ThreadManager::DistributeReservedJobs();
-
-		// 글로벌 큐
-		ThreadManager::DoGlobalQueueWork();
-	}
-}
-
 int main()
 {
 	GRoom->DoTimer(1000, [] { cout << "Hello 1000" << endl; });
 	GRoom->DoTimer(2000, [] { cout << "Hello 2000" << endl; });
 	GRoom->DoTimer(3000, [] { cout << "Hello 3000" << endl; });
+
+	const int WorkerThreadCount = 4;
+	const int NetworkThreadCount = 4;
+	
+	GRoom->DoAsync
 
 	ClientPacketHandler::Init();
 
@@ -50,16 +38,29 @@ int main()
 
 	ASSERT_CRASH(service->Start());
 
-	for (int32 i = 0; i < 5; i++)
+	for (int32 i = 0; i < NetworkThreadCount; i++)
 	{
 		GThreadManager->Launch([&service]()
 			{
-				DoWorkerJob(service);
+				service->GetIocpCore()->Dispatch(INFINITE);
 			});
 	}
 
-	// Main Thread
-	DoWorkerJob(service);
+	for (int32 i = 0; i < WorkerThreadCount; i++)
+	{
+		GThreadManager->Launch([]()
+			{
+				ThreadManager::DistributeReservedJobs();
+
+				ThreadManager::DoGlobalQueueWork();
+			});
+	}
+
+	while (true)
+	{
+		std::string commend;
+		cin >> commend;
+	}
 
 	GThreadManager->Join();
 }
