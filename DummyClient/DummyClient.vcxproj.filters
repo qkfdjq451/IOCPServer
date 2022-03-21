@@ -22,6 +22,15 @@
     <Filter Include="CommandManager">
       <UniqueIdentifier>{d45d983f-e2d6-447e-b4b6-c5185cf5aaff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CommandManager\State">
+      <UniqueIdentifier>{98b9b8a0-a965-4fe9-98d5-31fe240c7fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandManager\State\Chat">
+      <UniqueIdentifier>{1359e641-3ec2-40b0-9ae1-6d9fdd3d63ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandManager\State\Login">
+      <UniqueIdentifier>{b7267917-da8b-4ed3-9a06-1bf87269e494}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DummyClient.cpp">
@@ -51,6 +60,9 @@
     <ClCompile Include="CommandManager.cpp">
       <Filter>CommandManager</Filter>
     </ClCompile>
+    <ClCompile Include="InitializeState.cpp">
+      <Filter>CommandManager\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -76,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="CommandManager.h">
       <Filter>CommandManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StateController.hpp">
+      <Filter>CommandManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="IState.h">
+      <Filter>CommandManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="InitializeState.h">
+      <Filter>CommandManager\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -173,6 +173,7 @@
   <ItemGroup>
     <ClCompile Include="Chat.pb.cc" />
     <ClCompile Include="CommandManager.cpp" />
+    <ClCompile Include="InitializeState.cpp" />
     <ClCompile Include="Login.pb.cc" />
     <ClCompile Include="Player.pb.cc" />
     <ClCompile Include="ServerChatPacketHandler.cpp" />
@@ -189,12 +190,15 @@
   <ItemGroup>
     <ClInclude Include="Chat.pb.h" />
     <ClInclude Include="CommandManager.h" />
+    <ClInclude Include="InitializeState.h" />
+    <ClInclude Include="IState.h" />
     <ClInclude Include="Login.pb.h" />
     <ClInclude Include="Player.pb.h" />
     <ClInclude Include="ServerChatPacketHandler.h" />
     <ClInclude Include="ServerLoginPacketHandler.h" />
     <ClInclude Include="ServerPacketHandler.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="StateController.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Common\Protobuf\bin\Chat.proto" />
