@@ -39,9 +39,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="ServerPacketHandler.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="ServerChatPacketHandler.cpp">
       <Filter>MessageHandler\Chat</Filter>
     </ClCompile>
@@ -63,13 +60,13 @@
     <ClCompile Include="InitializeState.cpp">
       <Filter>CommandManager\State</Filter>
     </ClCompile>
+    <ClCompile Include="LoginState.cpp">
+      <Filter>CommandManager\State\Login</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="ServerPacketHandler.h">
-      <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="ServerChatPacketHandler.h">
       <Filter>MessageHandler\Chat</Filter>
@@ -89,7 +86,7 @@
     <ClInclude Include="CommandManager.h">
       <Filter>CommandManager</Filter>
     </ClInclude>
-    <ClInclude Include="StateController.hpp">
+    <ClInclude Include="StateController.h">
       <Filter>CommandManager\State</Filter>
     </ClInclude>
     <ClInclude Include="IState.h">
@@ -97,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="InitializeState.h">
       <Filter>CommandManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginState.h">
+      <Filter>CommandManager\State\Login</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

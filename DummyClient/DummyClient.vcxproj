@@ -175,9 +175,9 @@
     <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="InitializeState.cpp" />
     <ClCompile Include="Login.pb.cc" />
+    <ClCompile Include="LoginState.cpp" />
     <ClCompile Include="Player.pb.cc" />
     <ClCompile Include="ServerChatPacketHandler.cpp" />
-    <ClCompile Include="ServerPacketHandler.cpp" />
     <ClCompile Include="DummyClient.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -193,12 +193,12 @@
     <ClInclude Include="InitializeState.h" />
     <ClInclude Include="IState.h" />
     <ClInclude Include="Login.pb.h" />
+    <ClInclude Include="LoginState.h" />
     <ClInclude Include="Player.pb.h" />
     <ClInclude Include="ServerChatPacketHandler.h" />
     <ClInclude Include="ServerLoginPacketHandler.h" />
-    <ClInclude Include="ServerPacketHandler.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="StateController.hpp" />
+    <ClInclude Include="StateController.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Common\Protobuf\bin\Chat.proto" />

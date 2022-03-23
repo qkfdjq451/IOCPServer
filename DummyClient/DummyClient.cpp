@@ -5,9 +5,14 @@
 #include "BufferReader.h"
 #include "ServerChatPacketHandler.h"
 #include "ServerLoginPacketHandler.h"
+#include "CommandManager.h"
+#include "StateController.h"
+#include "LoginState.h"
 
 char sendData[] = "Hello World";
 
+
+CommandManager commandManager;
 class ServerSession : public PacketSession
 {
 public:
@@ -26,10 +31,8 @@ public:
 	virtual void OnRecvPacket(BYTE* buffer, int32 len) override
 	{
 		PacketSessionRef session = GetPacketSessionRef();
-		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 
-		// TODO : packetId 대역 체크
-		ServerPacketHandler::HandlePacket(session, buffer, len);
+		ServerLoginPacketHandler::HandlePacket(session, buffer, len);
 	}
 
 	virtual void OnSend(int32 len) override
@@ -38,13 +41,15 @@ public:
 	}
 
 	virtual void OnDisconnected() override
-	{
+	{		
+		commandManager.GetStateController().ChangeState<LoginState>();
 		//cout << "Disconnected" << endl;
 	}
 };
 
 int main()
 {
+	commandManager.Init();
 	ServerChatPacketHandler::Init();
 	ServerLoginPacketHandler::Init();
 
