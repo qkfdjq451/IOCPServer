@@ -4,22 +4,22 @@
 
 PlayerManager GPlayerManager;
 
-void PlayerManager::Login(std::string name,function<void(bool,std::shared_ptr<PlayerInfo>)> callback)
+void PlayerManager::Login(std::string name,function<void(bool,std::shared_ptr<PlayerInfo>)> loginResultCallback)
 {
 	auto self(shared_from_this());
-	this->DoAsync([this, self, name, callback]
+	this->DoAsync([this, self, name, loginResultCallback]
 		{
 			auto findIter = m_playerMap.find(name);
 			if (findIter != m_playerMap.end())
 			{			
-				callback(false, nullptr);
+				loginResultCallback(false, nullptr);
 				return;
 			}
 			
 			auto player = std::make_shared<PlayerInfo>();
 			player->SetName(name);
 			m_playerMap.emplace(name, player);
-			callback(true, player);
+			loginResultCallback(true, player);
 		});
 }
 

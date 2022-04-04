@@ -4,9 +4,6 @@
 #include "Player.h"
 #include "GameSession.h"
 
-
-std::map<uint64, PacketHandlerFunc> GClientLoginPacketHandlerMap;
-
 bool Handle_C_LOGIN(PacketSessionRef& session, Protocol::C_LOGIN& pkt)
 {
 	auto gameSession = std::static_pointer_cast<GameSession>(session);	

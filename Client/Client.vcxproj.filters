@@ -2,10 +2,118 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Main">
-      <UniqueIdentifier>{8141672b-0fef-4b57-8833-5d23cf49c424}</UniqueIdentifier>
+      <UniqueIdentifier>{7ce01a19-38b3-498c-9275-d574830917cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{a5cbd172-9aef-4030-945e-7110f2ea7d51}</UniqueIdentifier>
     </Filter>
     <Filter Include="Protocol">
-      <UniqueIdentifier>{1035b1fc-3921-451e-ade1-6fb6827ac6c9}</UniqueIdentifier>
+      <UniqueIdentifier>{15ffd3da-e358-4e2b-8754-e2e4a6f52136}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MessageHandler">
+      <UniqueIdentifier>{f5110d5f-0ac1-4b0d-8e18-5d8449fdb961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MessageHandler\Chat">
+      <UniqueIdentifier>{0817889f-3e70-4b87-a721-3ad3d7ede12c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MessageHandler\Login">
+      <UniqueIdentifier>{30cd7e33-d69e-443f-aa27-9d9c6e46554c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandManager">
+      <UniqueIdentifier>{d45d983f-e2d6-447e-b4b6-c5185cf5aaff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandManager\State">
+      <UniqueIdentifier>{98b9b8a0-a965-4fe9-98d5-31fe240c7fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandManager\State\Chat">
+      <UniqueIdentifier>{1359e641-3ec2-40b0-9ae1-6d9fdd3d63ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandManager\State\Login">
+      <UniqueIdentifier>{b7267917-da8b-4ed3-9a06-1bf87269e494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{d92c27c4-9a17-4dda-8bf3-a51f342a3b76}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DummyClient.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerChatPacketHandler.cpp">
+      <Filter>MessageHandler\Chat</Filter>
+    </ClCompile>
+    <ClCompile Include="Chat.pb.cc">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.pb.cc">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.pb.cc">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerLoginPacketHandler.cpp">
+      <Filter>MessageHandler\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandManager.cpp">
+      <Filter>CommandManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializeState.cpp">
+      <Filter>CommandManager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginState.cpp">
+      <Filter>CommandManager\State\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSession.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerChatPacketHandler.h">
+      <Filter>MessageHandler\Chat</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerLoginPacketHandler.h">
+      <Filter>MessageHandler\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="Chat.pb.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.pb.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.pb.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandManager.h">
+      <Filter>CommandManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StateController.h">
+      <Filter>CommandManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="IState.h">
+      <Filter>CommandManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="InitializeState.h">
+      <Filter>CommandManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginState.h">
+      <Filter>CommandManager\State\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSession.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Common\Protobuf\bin\GenPackets.bat">
+      <Filter>Protocol</Filter>
+    </None>
+    <None Include="..\Common\Protobuf\bin\Chat.proto">
+      <Filter>Protocol</Filter>
+    </None>
   </ItemGroup>
 </Project>

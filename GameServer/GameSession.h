@@ -1,5 +1,9 @@
 #pragma once
+#include "ClientChatPacketHandler.h"
 #include "Session.h"
+
+using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
+extern std::unordered_map<uint64, PacketHandlerFunc> GPacketHandlerMap;
 
 class GameSession : public PacketSession
 {

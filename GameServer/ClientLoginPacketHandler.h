@@ -2,35 +2,20 @@
 #include "Login.pb.h"
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern std::map<uint64, PacketHandlerFunc> GClientLoginPacketHandlerMap;
-
+extern std::unordered_map<uint64, PacketHandlerFunc> GPacketHandlerMap;
 enum : uint64
 {
-	PKT_C_LOGIN = 18317769610250883564i64,
-	PKT_S_LOGIN_RESULT = 18317769614545850860i64,
-};
+	PKT_C_LOGIN = 151656015490388460i64,
+	PKT_S_LOGIN_RESULT = 151698823429427692i64,
+};	
 bool Handle_C_LOGIN(PacketSessionRef& session, Protocol::C_LOGIN& pkt);
 
 class ClientLoginPacketHandler
 {
 public:
-	static void Init()
+	static void Initialize()
 	{
-		GClientLoginPacketHandlerMap.emplace(PKT_C_LOGIN,[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C_LOGIN>(Handle_C_LOGIN, session, buffer, len); });
-	}
-
-	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
-	{
-		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-		auto handler = GClientLoginPacketHandlerMap.find(header->id);
-		if (handler != GClientLoginPacketHandlerMap.end())
-		{
-			return handler->second(session, buffer, len);
-		}
-		else
-		{
-			return false;
-		}
+		GPacketHandlerMap.emplace(PKT_C_LOGIN,[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C_LOGIN>(Handle_C_LOGIN, session, buffer, len); });
 	}
 	static SendBufferRef MakeSendBuffer(Protocol::S_LOGIN_RESULT& pkt) { return MakeSendBuffer(pkt, PKT_S_LOGIN_RESULT); }
 

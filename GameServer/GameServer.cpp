@@ -18,12 +18,12 @@ enum
 
 int main()
 {
+	ClientChatPacketHandler::Initialize();
+	ClientLoginPacketHandler::Initialize();
+
 	const int WorkerThreadCount = 4;
 	const int NetworkThreadCount = 4;
 	
-	ClientLoginPacketHandler::Init();
-	ClientChatPacketHandler::Init();
-
 	ServerServiceRef service = MakeShared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
 		MakeShared<IocpCore>(),

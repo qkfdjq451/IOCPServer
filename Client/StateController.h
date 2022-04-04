@@ -17,11 +17,15 @@ public:
 	void ChangeState()
 	{
 		m_currentState->Leave();
+		m_currentState.release();
 		m_currentState = std::make_unique<T>();
 		m_currentState->Enter();
 	}
 
+	void ProcessCommand(const std::string& command)
+	{
+		m_currentState->ProcessCommand(command);
+	}
 private:
-
 	std::unique_ptr<IState> m_currentState;
 };

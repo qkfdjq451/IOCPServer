@@ -2,10 +2,11 @@
 #include "GameSessionManager.h"
 #include "GameSession.h"
 
+
 GameSessionManager GSessionManager;
 
 void GameSessionManager::Add(GameSessionRef session)
-{
+{	
 	auto self(shared_from_this());
 	this->DoAsync([this, self, session]
 		{

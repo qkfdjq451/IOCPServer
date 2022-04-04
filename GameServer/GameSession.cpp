@@ -5,6 +5,7 @@
 #include "ClientChatPacketHandler.h"
 #include "ClientLoginPacketHandler.h"
 
+std::unordered_map<uint64, PacketHandlerFunc> GPacketHandlerMap;
 
 bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
@@ -36,16 +37,16 @@ void GameSession::OnRecvPacket(BYTE* buffer, int32 len)
 {
 	PacketSessionRef session = GetPacketSessionRef();
 
-	if (ClientChatPacketHandler::HandlePacket(session, buffer, len))
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+	auto handler = GPacketHandlerMap.find(header->id);
+	if (handler != GPacketHandlerMap.end())
 	{
-		return;
+		handler->second(session, buffer, len);
 	}
-	else if (ClientLoginPacketHandler::HandlePacket(session, buffer, len))
+	else
 	{
-		return;
+		Handle_INVALID(session, buffer, len);		
 	}
-
-	Handle_INVALID(session, buffer, len);
 }
 
 void GameSession::OnSend(int32 len)

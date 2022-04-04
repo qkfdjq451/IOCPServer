@@ -2,7 +2,6 @@
 #include "{{parser.file_name}}.pb.h"
 
 using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
-extern std::map<uint64, PacketHandlerFunc> G{{output}}Map;
 
 enum : uint64
 {
@@ -18,29 +17,15 @@ bool Handle_{{pkt.name}}(PacketSessionRef& session, Protocol::{{pkt.name}}& pkt)
 class {{output}}
 {
 public:
-	static void Init()
+	void Init()	
 	{
 {%- for pkt in parser.recv_pkt %}
-		G{{output}}Map.emplace(PKT_{{pkt.name}},[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::{{pkt.name}}>(Handle_{{pkt.name}}, session, buffer, len); });		
+		{{output}}Map.emplace(PKT_{{pkt.name}},[](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::{{pkt.name}}>(Handle_{{pkt.name}}, session, buffer, len); });		
 {%- endfor %}
 	}
 
-	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
-	{
-		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
-		auto handler = G{{output}}Map.find(header->id);
-		if (handler != G{{output}}Map.end())
-		{
-			return handler->second(session, buffer, len);
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 {%- for pkt in parser.send_pkt %}
-	static SendBufferRef MakeSendBuffer(Protocol::{{pkt.name}}& pkt) { return MakeSendBuffer(pkt, PKT_{{pkt.name}}); }
+	SendBufferRef MakeSendBuffer(Protocol::{{pkt.name}}& pkt) { return MakeSendBuffer(pkt, PKT_{{pkt.name}}); }
 {%- endfor %}
 
 private:
@@ -69,4 +54,6 @@ private:
 
 		return sendBuffer;
 	}
+private:
+	std::map<uint64, PacketHandlerFunc> {{output}}Map;
 };

@@ -30,12 +30,12 @@ void SocketUtils::Clear()
 bool SocketUtils::BindWindowsFunction(SOCKET socket, GUID guid, LPVOID* fn)
 {
 	DWORD bytes = 0;
-	return SOCKET_ERROR != ::WSAIoctl(socket, SIO_GET_EXTENSION_FUNCTION_POINTER, &guid, sizeof(guid), fn, sizeof(*fn), OUT & bytes, NULL, NULL);
+	return SOCKET_ERROR != ::WSAIoctl(socket, SIO_GET_EXTENSION_FUNCTION_POINTER, &guid, sizeof(guid), fn, sizeof(*fn), OUT & bytes, nullptr, nullptr);
 }
 
 SOCKET SocketUtils::CreateSocket()
 {
-	return ::WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
+	return ::WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, nullptr, 0, WSA_FLAG_OVERLAPPED);
 }
 
 bool SocketUtils::SetLinger(SOCKET socket, uint16 onoff, uint16 linger)

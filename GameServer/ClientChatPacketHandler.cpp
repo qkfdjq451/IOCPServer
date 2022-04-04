@@ -4,7 +4,6 @@
 #include "GameSession.h"
 #include "Player.h"
 #include "ChatRoom.h"
-std::map<uint64, PacketHandlerFunc> GClientChatPacketHandlerMap;
 
 bool Handle_C_CHAT_CREATE_ROOM_MESSAGE(PacketSessionRef& session, Protocol::C_CHAT_CREATE_ROOM_MESSAGE& pkt)
 {
