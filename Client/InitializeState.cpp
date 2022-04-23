@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "InitializeState.h"
 #include "IState.h"
+#include "InitializeState.h"
 
 void InitializeState::Enter()
 {

@@ -19,24 +19,30 @@
     <Filter Include="MessageHandler\Login">
       <UniqueIdentifier>{30cd7e33-d69e-443f-aa27-9d9c6e46554c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CommandManager">
-      <UniqueIdentifier>{d45d983f-e2d6-447e-b4b6-c5185cf5aaff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CommandManager\State">
-      <UniqueIdentifier>{98b9b8a0-a965-4fe9-98d5-31fe240c7fe7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CommandManager\State\Chat">
-      <UniqueIdentifier>{1359e641-3ec2-40b0-9ae1-6d9fdd3d63ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CommandManager\State\Login">
-      <UniqueIdentifier>{b7267917-da8b-4ed3-9a06-1bf87269e494}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Network">
       <UniqueIdentifier>{d92c27c4-9a17-4dda-8bf3-a51f342a3b76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Facade">
+      <UniqueIdentifier>{afd8d486-e895-41fc-813e-8097b970059e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Facade\CommandFacade">
+      <UniqueIdentifier>{d45d983f-e2d6-447e-b4b6-c5185cf5aaff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Facade\NetworkFacade">
+      <UniqueIdentifier>{b8b2ad0b-3046-47c2-8e84-ab4871252969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{98b9b8a0-a965-4fe9-98d5-31fe240c7fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State\Chat">
+      <UniqueIdentifier>{1359e641-3ec2-40b0-9ae1-6d9fdd3d63ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State\Login">
+      <UniqueIdentifier>{b7267917-da8b-4ed3-9a06-1bf87269e494}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DummyClient.cpp">
+    <ClCompile Include="Client.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -57,18 +63,19 @@
     <ClCompile Include="ServerLoginPacketHandler.cpp">
       <Filter>MessageHandler\Login</Filter>
     </ClCompile>
-    <ClCompile Include="CommandManager.cpp">
-      <Filter>CommandManager</Filter>
+    <ClCompile Include="CommandFacade.cpp">
+      <Filter>Facade\CommandFacade</Filter>
     </ClCompile>
     <ClCompile Include="InitializeState.cpp">
-      <Filter>CommandManager\State</Filter>
+      <Filter>State</Filter>
     </ClCompile>
     <ClCompile Include="LoginState.cpp">
-      <Filter>CommandManager\State\Login</Filter>
+      <Filter>State\Login</Filter>
     </ClCompile>
     <ClCompile Include="ServerSession.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="NetworkFacade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -89,24 +96,25 @@
     <ClInclude Include="Player.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="CommandManager.h">
-      <Filter>CommandManager</Filter>
+    <ClInclude Include="CommandFacade.h">
+      <Filter>Facade\CommandFacade</Filter>
     </ClInclude>
     <ClInclude Include="StateController.h">
-      <Filter>CommandManager\State</Filter>
+      <Filter>State</Filter>
     </ClInclude>
     <ClInclude Include="IState.h">
-      <Filter>CommandManager\State</Filter>
+      <Filter>State</Filter>
     </ClInclude>
     <ClInclude Include="InitializeState.h">
-      <Filter>CommandManager\State</Filter>
+      <Filter>State</Filter>
     </ClInclude>
     <ClInclude Include="LoginState.h">
-      <Filter>CommandManager\State\Login</Filter>
+      <Filter>State\Login</Filter>
     </ClInclude>
     <ClInclude Include="ServerSession.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="NetworkFacade.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Common\Protobuf\bin\GenPackets.bat">

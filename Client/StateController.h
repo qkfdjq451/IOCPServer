@@ -10,7 +10,7 @@ class StateController
 public:
 	StateController() : m_currentState(std::make_unique<InitializeState>()) {}
 	template<typename T,
-		typename = typename std::enable_if_t<
+		typename = std::enable_if_t<
 		std::is_base_of<IState, std::decay_t<T>>::value
 		&& !std::is_same<IState, std::decay_t<T>>::value
 		>>

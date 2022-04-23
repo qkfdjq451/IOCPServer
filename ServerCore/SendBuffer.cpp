@@ -82,19 +82,19 @@ SendBufferRef SendBufferManager::Open(uint32 size)
 	return LSendBufferChunk->Open(size);
 }
 
-SendBufferChunkRef SendBufferManager::Pop()
+std::shared_ptr<SendBufferChunk> SendBufferManager::Pop()
 {
 	{
 		WRITE_LOCK;
 		if (_sendBufferChunks.empty() == false)
 		{
-			SendBufferChunkRef sendBufferChunk = _sendBufferChunks.back();
+			std::shared_ptr<SendBufferChunk> sendBufferChunk = _sendBufferChunks.back();
 			_sendBufferChunks.pop_back();
 			return sendBufferChunk;
 		}
 	}
 
-	return SendBufferChunkRef(xnew<SendBufferChunk>(), PushGlobal);
+	return std::shared_ptr<SendBufferChunk>(xnew<SendBufferChunk>(), PushGlobal);
 }
 
 void SendBufferManager::Push(SendBufferChunkRef buffer)
@@ -102,10 +102,8 @@ void SendBufferManager::Push(SendBufferChunkRef buffer)
 	WRITE_LOCK;
 	_sendBufferChunks.push_back(buffer);
 }
-
+ 
 void SendBufferManager::PushGlobal(SendBufferChunk* buffer)
 {
-	cout << "PushGlobal SENDBUFFERCHUNK" << endl;
-
 	GSendBufferManager->Push(SendBufferChunkRef(buffer, PushGlobal));
 }

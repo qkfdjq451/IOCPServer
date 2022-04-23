@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CommandManager.h"
+#include "CommandFacade.h"
 #include "LoginState.h"
 #include "ServerLoginPacketHandler.h"
 #include  "ServerSession.h"
@@ -9,12 +9,15 @@ std::unordered_map<uint64, PacketHandlerFunc> GPacketHandlerMap;
 
 void ServerSession::Initialize()
 {
-	ServerLoginPacketHandler::Initialize();
-	ServerChatPacketHandler::Initialize();
 }
 
 bool ServerSession::handle_invalid(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
+}
+
+void ServerSession::OnConnected()
+{
+	
 }
 
 void ServerSession::OnRecvPacket(BYTE* buffer, int32 len)

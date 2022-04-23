@@ -1,16 +1,12 @@
 #pragma once
-#include "StateController.h"
-
 class StateController;
 
-class CommandManager
+class CommandFacade
 {
 public:
 	void Init();
 	void ProcessCommand(const std::string& command);
 	StateController& GetStateController() { return m_stateController; }
+private:
 	StateController m_stateController;
-
 };
-
-extern CommandManager commandManager;

@@ -3,7 +3,7 @@
 #include "Service.h"
 
 #include "ServerLoginPacketHandler.h"
-#include "CommandManager.h"
+#include "CommandFacade.h"
 #include "StateController.h"
 #include "LoginState.h"
 

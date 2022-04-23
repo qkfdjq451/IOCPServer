@@ -1,16 +1,15 @@
 #include "pch.h"
-#include "CommandManager.h"
 #include "StateController.h"
 #include "LoginState.h"
+#include "CommandFacade.h"
 
-CommandManager commandManager;
 
-void CommandManager::Init()
+void CommandFacade::Init()
 {
 	m_stateController.ChangeState<LoginState>();
 }
 
-void CommandManager::ProcessCommand(const std::string& command)
+void CommandFacade::ProcessCommand(const std::string& command)
 {
 	m_stateController.ProcessCommand(command);
 }

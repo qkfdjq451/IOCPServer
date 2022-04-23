@@ -5,8 +5,8 @@ using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
 extern std::unordered_map<uint64, PacketHandlerFunc> GPacketHandlerMap;
 enum : uint64
 {
-	PKT_C_LOGIN = 151656015490388460i64,
-	PKT_S_LOGIN_RESULT = 151698823429427692i64,
+	PKT_C_LOGIN = 2177148058140479980i64,
+	PKT_S_LOGIN_RESULT = 2177190891849322988i64,
 };	
 bool Handle_C_LOGIN(PacketSessionRef& session, Protocol::C_LOGIN& pkt);
 
